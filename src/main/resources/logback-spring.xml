@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	<property name="LOG_HOME" value="./logs" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) - %gray(%msg%n)</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/zboot.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<!--日志文件最大的大小 -->x
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+	<appender name="FILE_ERR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>error</level>
+		</filter>
+		<rollingPolicy
+				class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/zboot_error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}:%L - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<!--日志文件最大的大小 -->
+		<triggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+
+
+	<logger name="com.apache.ibatis" level="TRACE" />
+	<logger name="java.sql.Connection" level="DEBUG" />
+	<logger name="java.sql.Statement" level="DEBUG" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="FILE_ERR" />
+	</root>
+
+</configuration>

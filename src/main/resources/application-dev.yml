@@ -1,0 +1,98 @@
+# 配置端口
+server:
+  port: 9000
+  servlet:
+    context-path: /api/zboot
+    application-display-name: zboot
+  # 开启GZIP压缩
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zboot
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    druid:
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select '1'
+      testWhileIdle: true
+      testOnBorrow: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      # 配置监控统计
+      webStatFilter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: zboot
+        login-password: zboot
+        allow:
+        #allow: 127.0.0.1 允许本机查看
+        deny:
+      filter:
+        stat:
+          enabled: true
+          # 记录慢SQL
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# mybatis-plus相关配置
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:**/*Mapper.xml
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      id-type: 0
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: 2
+      #驼峰下划线转换
+      table-underline: true
+    #logic-delete-value: 0 # 逻辑已删除值(默认为 1)
+    #logic-not-delete-value: 1 # 逻辑未删除值(默认为 0)
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+logging:
+  level:
+    com.zboot.modules.system.mapper: debug
+    com.zboot.modules.develop.mapper: debug
+
+# 接口文档账号密码保护
+swagger:
+  production: false
+  basic:
+    enable: true
+    username: zboot
+    password: zboot
+
+# 个人配置
+zszxz:
+  minio:
+    endpoint: http://ip:port #minio网点路径
+    accessKey:  # mimio 许可key
+    secretKey:  # minio 密钥
+    bucketName:  # minio 桶
+    #  下载根路径, 根据部署路径替换 ip:port
+    baseURL: http://localhost:9000/api/zboot/file/download/

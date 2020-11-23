@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zboot.modules.system.mapper.SysUserMapper">
+
+
+
+    <select id="getUserByUserName" parameterType="string" resultType="com.zboot.modules.system.domain.SysUser">
+        SELECT * FROM sys_user where enable='1'and  username =  #{username}
+    </select>
+
+
+
+
+</mapper>

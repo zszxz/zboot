@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zboot.modules.system.mapper.SysMenuMapper">
+
+
+
+    <!--通过角色获取所有菜单-->
+    <select id="getRoleMenus"  resultType="com.zboot.modules.system.domain.SysMenu">
+        select distinct sys_menu.* from sys_menu
+        left join sys_role_menu
+        on (sys_menu.id = sys_role_menu.mid)
+        <where>
+            sys_role_menu.rid  in
+            <foreach collection="roleIdList" open="(" separator="," item="role_id" index="i"  close=")">
+                #{role_id}
+            </foreach>
+            <if test="typeList!=null">
+                and type in
+                <foreach collection="typeList" open="(" separator="," item="type" index="i"  close=")">
+                    #{type}
+                </foreach>
+            </if>
+        </where>
+            order by sys_menu.sort asc
+    </select>
+
+    <insert id="addRoleMenu" >
+        insert  into sys_role_menu (rid, mid) values
+        <foreach collection="roleMenus"  separator="," item="roleMenu" index="i">
+            (
+            #{roleMenu.rid},
+            #{roleMenu.mid}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteRoleMenu" parameterType="long">
+        delete from sys_role_menu where rid = #{roleId}
+    </delete>
+
+
+
+</mapper>

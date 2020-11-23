@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zboot.modules.system.mapper.SysDepMapper">
+
+    <select id="getUserByDepId" parameterType="long" resultType="com.zboot.modules.system.domain.SysUser">
+        SELECT
+            usr.id,
+            usr.name,
+            usr.username,
+            usr.telephone,
+            usr.create_time,
+            usr.enable
+        FROM
+            sys_user usr
+            INNER JOIN sys_dep_user depu ON ( usr.id = depu.user_id )
+        <where>
+            <if test="depId!=null">
+                depu.dep_id = #{depId}
+            </if>
+        </where>
+        order by usr.create_time desc
+    </select>
+
+    <delete id="deleteDepUser" >
+        delete from sys_dep_user
+        <where>
+            <if test="depId!=null">
+                and dep_id = #{depId}
+            </if>
+            <if test="depId!=null">
+                and user_id = #{userId}
+            </if>
+        </where>
+
+    </delete>
+
+    <insert id="addDepUser">
+        insert into sys_dep_user(dep_id,user_id) values (#{depId}, #{userId})
+    </insert>
+
+</mapper>
