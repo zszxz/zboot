@@ -42,7 +42,7 @@ public class SysUserController {
     SysRoleService sysRoleService;
 
     @ApiOperation(value = "查询用户分页查询")
-    @GetMapping("/user/list")
+    @GetMapping("/user/page")
     public ResultPage getSysUser(SysUserVo sysUserVo,
                                  @RequestParam(defaultValue = "1") int pageNum,
                                  @RequestParam(defaultValue = "10") int pageSize) {

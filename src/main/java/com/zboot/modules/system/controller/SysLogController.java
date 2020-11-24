@@ -29,7 +29,7 @@ public class SysLogController {
     SysLogService sysLogService;
 
     @ApiOperation(value = "系统日志分页查询")
-    @GetMapping(value = "log")
+    @GetMapping(value = "log/page")
     public ResultPage login(SysLogVo sysLogVo,
                             @RequestParam(defaultValue = "1") int pageNum,
                             @RequestParam(defaultValue = "10") int pageSize) {

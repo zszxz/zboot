@@ -33,7 +33,7 @@ public class SysRoleController {
     SysRoleService sysRoleService;
 
     @ApiOperation(value = "角色列表分页查询")
-    @GetMapping("/role/list")
+    @GetMapping("/role/page")
     public ResultPage getSysRole(SysRoleVo sysRoleVo,
                                   @RequestParam(defaultValue = "1") int pageNum,
                                   @RequestParam(defaultValue = "10") int pageSize) {
