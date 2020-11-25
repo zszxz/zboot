@@ -5,7 +5,7 @@
 
 
     <select id="getUserByUserName" parameterType="string" resultType="com.zboot.modules.system.domain.SysUser">
-        SELECT * FROM sys_user where enable='1'and  username =  #{username}
+        SELECT * FROM sys_user where enable= true and  username =  #{username}
     </select>
 
 

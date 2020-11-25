@@ -72,6 +72,12 @@
             <version>${pgsql-version}</version>
         </dependency>
 
+     <!--   <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>-->
+
         <!-- Shiro 核心依赖 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>

@@ -15,6 +15,10 @@ spring:
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
+    #driverClassName: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://ip:port/zboot?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+    #username: root
+    #password: 123456
     druid:
       maxActive: 20
       initialSize: 1
