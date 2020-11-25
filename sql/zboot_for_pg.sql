@@ -6,7 +6,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_data_dict";
 CREATE TABLE "public"."sys_data_dict" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "dict_name" varchar(255) COLLATE "pg_catalog"."default",
   "description" varchar(255) COLLATE "pg_catalog"."default",
   "create_time" timestamp(6),
@@ -35,7 +35,7 @@ INSERT INTO "public"."sys_data_dict" VALUES (2, 'dep', '部门简写', '2020-11-
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dep";
 CREATE TABLE "public"."sys_dep" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "parent_id" int8,
   "department_name" varchar(255) COLLATE "pg_catalog"."default",
   "sort" int4,
@@ -70,7 +70,7 @@ INSERT INTO "public"."sys_dep" VALUES (9, 1, '研发副队', 3, '2020-11-23 17:1
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_dep_user";
 CREATE TABLE "public"."sys_dep_user" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "dep_id" int8,
   "user_id" int8
 )
@@ -92,7 +92,7 @@ INSERT INTO "public"."sys_dep_user" VALUES (5, 8, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_log";
 CREATE TABLE "public"."sys_log" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "username" varchar(255) COLLATE "pg_catalog"."default",
   "ipaddress" varchar(255) COLLATE "pg_catalog"."default",
   "oprator" varchar(255) COLLATE "pg_catalog"."default",
@@ -136,7 +136,7 @@ INSERT INTO "public"."sys_log" VALUES (4069, 'admin', '0:0:0:0:0:0:0:1', '用户
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_menu";
 CREATE TABLE "public"."sys_menu" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "path" varchar(255) COLLATE "pg_catalog"."default",
   "name" varchar(255) COLLATE "pg_catalog"."default",
   "permission" varchar(255) COLLATE "pg_catalog"."default",
@@ -205,7 +205,7 @@ INSERT INTO "public"."sys_menu" VALUES (41, NULL, NULL, 'dict:delete', NULL, NUL
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role";
 CREATE TABLE "public"."sys_role" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "role_name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
   "description" varchar(255) COLLATE "pg_catalog"."default",
   "create_time" timestamp(6),
@@ -234,7 +234,7 @@ INSERT INTO "public"."sys_role" VALUES (2, 'member', '系统成员', '2020-10-12
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_role_menu";
 CREATE TABLE "public"."sys_role_menu" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "rid" int8,
   "mid" int8
 )
@@ -287,7 +287,7 @@ INSERT INTO "public"."sys_role_menu" VALUES (208, 1, 25);
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user";
 CREATE TABLE "public"."sys_user" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "username" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
   "password" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
   "salt" varchar(255) COLLATE "pg_catalog"."default",
@@ -328,7 +328,7 @@ INSERT INTO "public"."sys_user" VALUES (8, 'test2', '1d87dc8f9223b44a807ca8d7f73
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_user_role";
 CREATE TABLE "public"."sys_user_role" (
-  "id" int8 NOT NULL,
+  "id" serial8,
   "uid" int8,
   "rid" int8
 )
