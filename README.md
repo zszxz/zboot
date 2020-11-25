@@ -122,10 +122,6 @@ zboot 是一款基于 springboot2.1.1，shiro+jwt, elementUI,Vue 架构的轻量
 
 ![](https://gitee.com/lsc180/images/raw/master/img/wechat_code.jpg)
 
-支付宝
-
-![](https://gitee.com/lsc180/images/raw/master/img/20201125092011.png)
-
 # 关注
 
 最后如果想一起学习进步，可以关注作者的公众号
